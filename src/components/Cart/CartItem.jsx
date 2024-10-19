@@ -11,15 +11,15 @@ export const CartItem = ({product}) => {
         <>
 
         {/* Cart item row */}
-        <div className="flex justify-between pd-3 items-center">
+        <div className="flex justify-between p-2 items-center">
 
             {/* Item details */}
             <div className="flex flex-col">
                 <h4>{product.name}</h4>
                 <div className="flex gap-2">
-                    <p className="text-red-500 text-semi-bold">${product.quantity}</p>
-                    <p className="font-thin">{product.price}</p>
-
+                    <p className="text-red-500 text-semi-bold">{product.quantity}x</p>
+                    <p className="font-thin">@£{product.price}</p>
+                    <p className=""></p>
                 </div>
             </div>
 

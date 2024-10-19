@@ -1,9 +1,9 @@
 
 
-export const ConfirmButton = () => {
+export const ConfirmButton = ({children}) => {
     return (
         <>
-            <button className="w-full h-3 bg-red-500 text-white p-4">Confirm Order</button>
+            <button className="w-full bg-red-500 text-white p-4 rounded-lg">{children}</button>
         </>
     )
 }

@@ -6,6 +6,7 @@ const Products = createContext([]);
 export const ProductsProvider = ({children}) => {
 
     const [products, setProducts] = useState([]);
+    const [showModal, setShowModal] = useState([]);
 
     useEffect(() => {
         fetch("data.json")
@@ -22,7 +23,17 @@ export const ProductsProvider = ({children}) => {
         })}, []);
 
 
+    // Return array of products where quantity > 0
     const getCartItems = () => products.filter(item => item.quantity > 0);
+
+    // Return the subtotal of an item based on ID
+    const getItemSubtotal = (id) => {
+        const [product] = [...products.filter(item => item.id === id)];
+        return product.quantity * product.price;
+    }
+
+    // Return the total of all items in the cart
+    const getCartTotal = () => products.reduce((total, item) => item.quantity + total, 0);
     
 
     const setQuantity = (id, value) => {
