@@ -3,7 +3,6 @@ import { createContext, useContext, useEffect, useState } from "react";
 
 const Products = createContext([]);
 
-
 export const ProductsProvider = ({children}) => {
 
     const [products, setProducts] = useState([]);
@@ -22,18 +21,31 @@ export const ProductsProvider = ({children}) => {
             setProducts(newData);
         })}, []);
 
-    const setQuantity = (id, value) => {
-        const [product] = [...products.filter(item => item.id === id)];
-        product.quantity += value;
-        setProducts((products) => [...products.filter(item => item.id !== id), product]);
-        console.log(product);
-    }
 
     const getCartItems = () => products.filter(item => item.quantity > 0);
     
 
+    const setQuantity = (id, value) => {
+        const [product] = [...products.filter(item => item.id === id)];
+        product.quantity += value;
+        setProducts((products) => [...products.filter(item => item.id !== id), product]);
+    }
+
+    const removeFromCart = (id) => {
+        const [product] = [...products.filter(item => item.id === id)];
+        product.quantity = 0;
+        setProducts((products) => [...products.filter(item => item.id !== id), product]);
+    }
+
+ 
     return (
-        <Products.Provider value={{products: products, quantityCallback: setQuantity, cartItems: getCartItems}}>
+        <Products.Provider value={
+            {
+                products: products,
+                quantityCallback: setQuantity,
+                cartItems: getCartItems,
+                removeItem: removeFromCart
+            }}>
             {children}
         </Products.Provider>
     )

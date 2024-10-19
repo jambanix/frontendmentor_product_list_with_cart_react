@@ -1,4 +1,4 @@
-import { useState } from "react";
+
 import { useProductsContext } from "../../context/ProductsProvider";
 import { EmptyCart } from "./EmptyCart";
 import { CartItem } from "./CartItem"

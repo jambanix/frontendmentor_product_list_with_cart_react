@@ -6,9 +6,9 @@ export const Menu = () => {
 
   return (
     <>
-      <section className="flex flex-col gap-6 px-4 py-2">
-        <h2>Desserts</h2>
-        <div className="grid">
+      <section className="flex flex-col gap-6">
+        <h2 className="text-3xl font-extrabold">Desserts</h2>
+        <div className="grid md:grid-cols-3 md:gap-8 justify-center">
           {products.products.map((product) => {
             return <ProductCard product={product} key={product.id} />;
           })}

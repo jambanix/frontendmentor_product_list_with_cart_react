@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useProductsContext } from "../../context/ProductsProvider";
 
+
 export const ProductButton = ({ id, quantity }) => {
   const [isActive, setIsActive] = useState(false);
   const updateTopLevelQuantity = useProductsContext().quantityCallback;
@@ -23,14 +24,17 @@ export const ProductButton = ({ id, quantity }) => {
     }
   };
 
+  if (isActive && quantity === 0) {
+    setIsActive(false);
+  }
+
   //  Add to cart
   if (!isActive) {
     return (
       <>
         <button
           className="bg-white px-3 rounded-xl w-40 h-12 border-2 border-gray-400 flex justify-center items-center absolute left-1/2 -translate-x-1/2 -bottom-6"
-          onClick={handleActive}
-        >
+          onClick={handleActive}>
           <img
             src="src/assets/images/icon-add-to-cart.svg"
             className="h-4 w-5"
@@ -46,11 +50,10 @@ export const ProductButton = ({ id, quantity }) => {
     return (
       <>
         <button className="bg-red-500 px-3 rounded-xl w-40 h-12 border-2 border-yellow-500 flex justify-between items-center absolute left-1/2 -translate-x-1/2 -bottom-6">
-          <img
+        <img
             src="src/assets/images/icon-decrement-quantity.svg"
             className="h-4 w-5"
-            onClick={() => handleChange(false)}
-          />
+            onClick={() => handleChange(false)}/>
           <p>{quantity}</p>
           <img
             src="src/assets/images/icon-increment-quantity.svg"
