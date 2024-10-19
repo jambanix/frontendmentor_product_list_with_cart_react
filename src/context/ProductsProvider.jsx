@@ -8,13 +8,6 @@ export const ProductsProvider = ({children}) => {
 
     const [products, setProducts] = useState([]);
 
-    const setQuantity = (id, value) => {
-        const [product] = [...products.filter(item => item.id === id)];
-        product.quantity += value;
-        setProducts((products) => [...products, product]);
-        console.log(product);
-    }
-
     useEffect(() => {
         fetch("data.json")
         .then(response => response.json())
@@ -29,8 +22,18 @@ export const ProductsProvider = ({children}) => {
             setProducts(newData);
         })}, []);
 
+    const setQuantity = (id, value) => {
+        const [product] = [...products.filter(item => item.id === id)];
+        product.quantity += value;
+        setProducts((products) => [...products.filter(item => item.id !== id), product]);
+        console.log(product);
+    }
+
+    const getCartItems = () => products.filter(item => item.quantity > 0);
+    
+
     return (
-        <Products.Provider value={{products: products, quantityCallback: setQuantity}}>
+        <Products.Provider value={{products: products, quantityCallback: setQuantity, cartItems: getCartItems}}>
             {children}
         </Products.Provider>
     )
