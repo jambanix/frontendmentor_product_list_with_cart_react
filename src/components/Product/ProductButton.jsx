@@ -36,7 +36,7 @@ export const ProductButton = ({ product }) => {
     return (
       <>
         <button
-          className="bg-white px-3 rounded-xl w-40 h-10 border-2 border-gray-400 flex justify-center items-center absolute left-1/2 -translate-x-1/2 -bottom-5"
+          className="bg-white px-3 rounded-full w-40 h-10 border-2 border-rose-400 flex justify-center items-center absolute left-1/2 -translate-x-1/2 -bottom-5"
           onClick={handleActive}>
           <img
             src="src/assets/images/icon-add-to-cart.svg"
@@ -52,7 +52,7 @@ export const ProductButton = ({ product }) => {
   else {
     return (
       <>
-        <button className="bg-red text-white px-3 rounded-xl w-40 h-10 border-2 border-red-500 flex justify-between items-center absolute left-1/2 -translate-x-1/2 -bottom-5">
+        <button className="bg-red text-white px-3 rounded-full w-40 h-10 border-2 border-red flex justify-between items-center absolute left-1/2 -translate-x-1/2 -bottom-5">
         <img
             src="src/assets/images/icon-decrement-quantity.svg"
             className="h-4 w-5"

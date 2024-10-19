@@ -25,7 +25,7 @@ export const CartItem = ({product}) => {
             </div>
 
             {/* Remove icon */}
-            <div className="flex items-center justify-middle rounded-full border-gray-400 border-2 p-1 cursor-pointer" onClick={removeFromCart} >
+            <div className="flex items-center justify-middle rounded-full border-rose-300 border-2 p-1 cursor-pointer" onClick={removeFromCart} >
                 <img src="src/assets/images/icon-remove-item.svg" alt="" className="" />
             </div> 
         </div>
