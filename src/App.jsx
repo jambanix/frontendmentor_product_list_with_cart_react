@@ -8,7 +8,7 @@ function App() {
     <>
       <main>
         <ProductsProvider>
-          <div className="grid grid-cols-1 gap-4 p-3 md:px-8 xl:grid-cols-[70%_auto] xl:gap-4 xl:p-16">
+          <div className="grid grid-cols-1 gap-4 p-4 md:px-8 xl:grid-cols-[70%_auto] xl:gap-4 xl:p-16">
             <Menu />
             <Cart />
           </div>
