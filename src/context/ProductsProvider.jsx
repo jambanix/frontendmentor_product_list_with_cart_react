@@ -3,6 +3,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 
 const Products = createContext([]);
 
+
 export const ProductsProvider = ({children}) => {
 
     const [products, setProducts] = useState([]);
@@ -11,16 +12,20 @@ export const ProductsProvider = ({children}) => {
         fetch("data.json")
         .then(response => response.json())
         .then(data => {
-            setProducts(data.map((item, ix) => {
-                item.quantity = 0;
-                item.id = ix + 1;
-            }));
-        })
-    }, [])
+            const newData = data.map((item, ix) => {
+                return {
+                    ...item,
+                    quantity: 0,
+                    id: ix + 1
+                };
+            });
+            setProducts(newData);
+        })}, []);
 
     return (
-        <Products.Provider>
+        <Products.Provider value={products}>
             {children}
+            {console.log(products)}
         </Products.Provider>
     )
 }
