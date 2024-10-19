@@ -33,10 +33,12 @@ export const ProductsProvider = ({children}) => {
     }
 
     // Return the total of all items in the cart
-    const getCartTotal = () => products.reduce((total, item) => item.quantity + total, 0);
+    const getCartTotal = () => {
+        return products.filter(product => product.quantity > 0).reduce((total, product) => (product.price * product.quantity) + total, 0);
+    }
     
 
-    const setQuantity = (id, value) => {
+    const alterQuantity = (id, value) => {
         const [product] = [...products.filter(item => item.id === id)];
         product.quantity += value;
         setProducts((products) => [...products.filter(item => item.id !== id), product]);
@@ -52,10 +54,12 @@ export const ProductsProvider = ({children}) => {
     return (
         <Products.Provider value={
             {
-                products: products,
-                quantityCallback: setQuantity,
-                cartItems: getCartItems,
-                removeItem: removeFromCart
+                products,
+                alterQuantity,
+                getCartItems,
+                removeFromCart,
+                getItemSubtotal,
+                getCartTotal
             }}>
             {children}
         </Products.Provider>

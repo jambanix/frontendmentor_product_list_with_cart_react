@@ -12,7 +12,7 @@ export const ProductCard = ({ product }) => {
             alt={`Picture of ${product.name}`}
             className="rounded-lg"
           />
-          <ProductButton id={product.id} quantity={product.quantity} />
+          <ProductButton product={product}/>
         </div>
         <div>
           <p>{product.category}</p>

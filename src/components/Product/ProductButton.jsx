@@ -2,19 +2,22 @@ import { useState } from "react";
 import { useProductsContext } from "../../context/ProductsProvider";
 
 
-export const ProductButton = ({ id, quantity }) => {
+export const ProductButton = ({ product }) => {
   const [isActive, setIsActive] = useState(false);
-  const updateTopLevelQuantity = useProductsContext().quantityCallback;
+  const productsContext = useProductsContext();
 
-  const increment = () => updateTopLevelQuantity(id, 1);
+  const updateTopLevelQuantity = productsContext.alterQuantity;
+  
+
+  const increment = () => updateTopLevelQuantity(product.id, 1);
 
   const decrement = () => {
-    updateTopLevelQuantity(id, -1);
-    quantity === 1 ? setIsActive(false) : null;
+    updateTopLevelQuantity(product.id, -1);
+    product.quantity === 1 ? setIsActive(false) : null;
   };
 
   const handleChange = (add = true) => {
-    add ? increment() : quantity !== 0 && decrement();
+    add ? increment() : product.quantity !== 0 && decrement();
   };
 
   const handleActive = () => {
@@ -24,7 +27,7 @@ export const ProductButton = ({ id, quantity }) => {
     }
   };
 
-  if (isActive && quantity === 0) {
+  if (isActive && product.quantity === 0) {
     setIsActive(false);
   }
 
@@ -33,7 +36,7 @@ export const ProductButton = ({ id, quantity }) => {
     return (
       <>
         <button
-          className="bg-white px-3 rounded-xl w-40 h-12 border-2 border-gray-400 flex justify-center items-center absolute left-1/2 -translate-x-1/2 -bottom-6"
+          className="bg-white px-3 rounded-xl w-40 h-10 border-2 border-gray-400 flex justify-center items-center absolute left-1/2 -translate-x-1/2 -bottom-5"
           onClick={handleActive}>
           <img
             src="src/assets/images/icon-add-to-cart.svg"
@@ -49,12 +52,12 @@ export const ProductButton = ({ id, quantity }) => {
   else {
     return (
       <>
-        <button className="bg-red-500 px-3 rounded-xl w-40 h-12 border-2 border-yellow-500 flex justify-between items-center absolute left-1/2 -translate-x-1/2 -bottom-6">
+        <button className="bg-red-500 text-white px-3 rounded-xl w-40 h-10 border-2 border-red-500 flex justify-between items-center absolute left-1/2 -translate-x-1/2 -bottom-5">
         <img
             src="src/assets/images/icon-decrement-quantity.svg"
             className="h-4 w-5"
             onClick={() => handleChange(false)}/>
-          <p>{quantity}</p>
+          <p>{product.quantity}</p>
           <img
             src="src/assets/images/icon-increment-quantity.svg"
             className="h-4 w-5"

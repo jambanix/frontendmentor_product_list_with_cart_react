@@ -3,9 +3,10 @@ import { useProductsContext } from "../../context/ProductsProvider"
 
 export const CartItem = ({product}) => {
 
-    const callback = useProductsContext().removeItem;
+    const productsContext = useProductsContext();
 
-    const remove = (id) => callback(id);
+    const removeFromCart = () => productsContext.removeFromCart(product.id);
+    const itemSubtotal = () => productsContext.getItemSubtotal(product.id);
 
     return (
         <>
@@ -19,12 +20,12 @@ export const CartItem = ({product}) => {
                 <div className="flex gap-2">
                     <p className="text-red-500 text-semi-bold">{product.quantity}x</p>
                     <p className="font-thin">@£{product.price}</p>
-                    <p className=""></p>
+                    <p className="">£{itemSubtotal()}</p>
                 </div>
             </div>
 
-            {/* Close icon */}
-            <div className="flex items-center justify-middle rounded-full border-gray-400 border-2 p-1 cursor-pointer" onClick={() => remove(product.id)} >
+            {/* Remove icon */}
+            <div className="flex items-center justify-middle rounded-full border-gray-400 border-2 p-1 cursor-pointer" onClick={removeFromCart} >
                 <img src="src/assets/images/icon-remove-item.svg" alt="" className="" />
             </div> 
         </div>
