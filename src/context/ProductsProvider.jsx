@@ -8,6 +8,13 @@ export const ProductsProvider = ({children}) => {
 
     const [products, setProducts] = useState([]);
 
+    const setQuantity = (id, value) => {
+        const [product] = [...products.filter(item => item.id === id)];
+        product.quantity += value;
+        setProducts((products) => [...products, product]);
+        console.log(product);
+    }
+
     useEffect(() => {
         fetch("data.json")
         .then(response => response.json())
@@ -23,9 +30,8 @@ export const ProductsProvider = ({children}) => {
         })}, []);
 
     return (
-        <Products.Provider value={products}>
+        <Products.Provider value={{products: products, quantityCallback: setQuantity}}>
             {children}
-            {console.log(products)}
         </Products.Provider>
     )
 }

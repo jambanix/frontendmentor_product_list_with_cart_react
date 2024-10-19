@@ -4,13 +4,15 @@ import { Menu } from './components/Menu'
 import { Cart } from "./components/Cart"
 
 function App() {
+
   return (
     <>
-      <ProductsProvider>
-        <h2>Desserts</h2>
-        <Menu />
-        <Cart />
-      </ProductsProvider>
+      <main>
+        <ProductsProvider>
+          <Menu />
+          <Cart />
+        </ProductsProvider>
+      </main>
     </>
   )
 }
