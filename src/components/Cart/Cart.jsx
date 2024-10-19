@@ -13,30 +13,28 @@ export const Cart = () => {
   
 
   return (
-    <>
-        <section className="bg-white flex flex-col rounded-xl gap-3 p-4 h-fit">
+      <section className="bg-white flex flex-col rounded-xl gap-3 p-4 h-fit">
 
-            {/* Cart heading */}
-            <h3 className="font-bold text-red-500 text-2xl">Your cart: ({cartItems.length})</h3>
+          {/* Cart heading */}
+          <h3 className="font-bold text-red-500 text-2xl">Your cart: ({cartItems.length})</h3>
 
-            {/* Render cart items if any */}
-            {
-                cartEmpty
-                ? <EmptyCart />
-                : cartItems.map(item => <CartItem product={item} />)
-            }
+          {/* Render cart items if any */}
+          {
+              cartEmpty
+              ? <EmptyCart />
+              : cartItems.map(item => <CartItem product={item} />)
+          }
 
-            {/*  */}
-            <div className="flex flex-row items-center justify-center bg-rose-50 w-full py-6 rounded-lg">
-                <img src="src/assets/images/icon-carbon-neutral.svg" alt="" />
-                <p>This is a carbon-neutral delivery</p>
-            </div>
-            <div className="flex justify-between items-center">
-              <p>Order Total</p>
-              <p className="text-2xl">£{getCartTotal()}</p>
-            </div>
-            <ConfirmButton>Confirm Order</ConfirmButton>
-        </section>
-    </>
+          {/*  */}
+          <div className="flex flex-row items-center justify-center bg-rose-50 w-full py-6 rounded-lg">
+              <img src="src/assets/images/icon-carbon-neutral.svg" alt="" />
+              <p>This is a carbon-neutral delivery</p>
+          </div>
+          <div className="flex justify-between items-center">
+            <p>Order Total</p>
+            <p className="text-2xl">£{getCartTotal()}</p>
+          </div>
+          <ConfirmButton>Confirm Order</ConfirmButton>
+      </section>
   )
 };

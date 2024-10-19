@@ -10,7 +10,6 @@ export const CartItem = ({product}) => {
 
     return (
         <>
-
         {/* Cart item row */}
         <div className="flex justify-between p-2 items-center">
 
