@@ -36,6 +36,11 @@ export const ProductsProvider = ({children}) => {
     const getCartTotal = () => {
         return products.filter(product => product.quantity > 0).reduce((total, product) => (product.price * product.quantity) + total, 0);
     }
+
+    const reset = () => {
+        const cartItems = getCartItems();
+        cartItems.forEach(item => removeFromCart(item.id));
+    }
     
 
     const alterQuantity = (id, value) => {
@@ -59,7 +64,8 @@ export const ProductsProvider = ({children}) => {
                 getCartItems,
                 removeFromCart,
                 getItemSubtotal,
-                getCartTotal
+                getCartTotal,
+                reset
             }}>
             {children}
         </Products.Provider>

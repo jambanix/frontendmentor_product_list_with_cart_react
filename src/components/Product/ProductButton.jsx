@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useProductsContext } from "../../context/ProductsProvider";
+import { QuantityIcon } from "./QuantityIcon";
 
 
 export const ProductButton = ({ product }) => {
@@ -53,16 +54,9 @@ export const ProductButton = ({ product }) => {
 
       {/* Quantity Button */}
       <button className={`bg-red transition-all text-white px-3 rounded-full w-40 h-10 border-2 border-red flex justify-between items-center absolute -bottom-5 left-1/2 z-10 -translate-x-1/2 ${isActive ? " visible scale-100" : "invisible scale-125"}`}>
-      <img
-          src="src/assets/images/icon-decrement-quantity.svg"
-          className="h-4 w-5"
-          onClick={() => handleChange(false)}/>
-        <p>{product.quantity}</p>
-          <img
-            src="src/assets/images/icon-increment-quantity.svg"
-            className="h-4 w-5"
-            onClick={isActive && handleChange}
-          />
+      <QuantityIcon increment={false} onClick={() => handleChange(false)}/>
+      <p>{product.quantity}</p>
+      <QuantityIcon onClick={isActive && handleChange}/>
       </button>
     </div>
   );
