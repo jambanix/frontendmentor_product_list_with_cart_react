@@ -13,7 +13,7 @@ export const ProductButton = ({ product }) => {
 
   const decrement = () => {
     updateTopLevelQuantity(product.id, -1);
-    product.quantity === 1 ? setIsActive(false) : null;
+    product.quantity === 0 ? setIsActive(false) : null;
   };
 
   const handleChange = (add = true) => {
@@ -31,40 +31,40 @@ export const ProductButton = ({ product }) => {
     setIsActive(false);
   }
 
-  //  Add to cart
-  if (!isActive) {
-    return (
-      <>
-        <button
-          className="bg-white px-3 rounded-full w-40 h-10 border-2 border-rose-400 flex justify-center items-center absolute left-1/2 -translate-x-1/2 -bottom-5"
-          onClick={handleActive}>
+  return (
+    <div
+    className="overflow-hidden transition-all">
+
+      {/* Add to cart button */}
+      <button
+        className={`
+        bg-white px-3 rounded-full w-40 h-10
+        border-2 border-rose-400 flex justify-center
+        items-center absolute left-1/2 -translate-x-1/2 -bottom-5
+        ${isActive ? "invisible scale-125" : "visible scale-100"}`}
+
+        onClick={handleActive}>
           <img
             src="src/assets/images/icon-add-to-cart.svg"
             className="h-4 w-5"
           />
-          <p>Add to Cart</p>
-        </button>
-      </>
-    );
-  }
+        <p>Add to Cart</p>
+      </button>
 
-  // Change quantity
-  else {
-    return (
-      <>
-        <button className="bg-red text-white px-3 rounded-full w-40 h-10 border-2 border-red flex justify-between items-center absolute left-1/2 -translate-x-1/2 -bottom-5">
-        <img
-            src="src/assets/images/icon-decrement-quantity.svg"
-            className="h-4 w-5"
-            onClick={() => handleChange(false)}/>
-          <p>{product.quantity}</p>
+      {/* Quantity Button */}
+      <button className={`bg-red transition-all text-white px-3 rounded-full w-40 h-10 border-2 border-red flex justify-between items-center absolute -bottom-5 left-1/2 z-10 -translate-x-1/2 ${isActive ? " visible scale-100" : "invisible scale-125"}`}>
+      <img
+          src="src/assets/images/icon-decrement-quantity.svg"
+          className="h-4 w-5"
+          onClick={() => handleChange(false)}/>
+        <p>{product.quantity}</p>
           <img
             src="src/assets/images/icon-increment-quantity.svg"
             className="h-4 w-5"
-            onClick={handleChange}
+            onClick={isActive && handleChange}
           />
-        </button>
-      </>
-    );
-  }
-};
+      </button>
+    </div>
+  );
+}
+
