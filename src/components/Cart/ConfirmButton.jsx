@@ -9,10 +9,14 @@ export const ConfirmButton = ({children}) => {
     const productContext = useProductsContext();
     const cartEmpty = productContext.getCartItems().length === 0;
 
+    const handleClick = () => {
+        if (!cartEmpty) modalContext.toggleModal();
+    }
+
     return (
         <button
             className="w-full bg-red text-white p-4 rounded-lg"
-            onClick={!cartEmpty && modalContext.toggleModal}>
+            onClick={handleClick}>
                 {children}
         </button>
     )

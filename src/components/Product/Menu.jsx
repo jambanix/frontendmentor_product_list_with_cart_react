@@ -8,9 +8,7 @@ export const Menu = () => {
       <section className="flex flex-col gap-6">
         <h2 className="text-3xl font-extrabold">Desserts</h2>
         <div className="grid md:grid-cols-3 md:gap-8 justify-center">
-          {productContext.products.map((product) => {
-            return <ProductCard product={product} key={product.id} />;
-          })}
+          {productContext.products.map((product) => <ProductCard product={product} key={product.id}/>)}
         </div>
       </section>
   );

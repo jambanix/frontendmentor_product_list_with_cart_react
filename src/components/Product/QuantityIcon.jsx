@@ -1,4 +1,4 @@
-import increment from "../../assets/images/icon-increment-quantity.svg"
+
 
 export const QuantityIcon = ({onClick, increment=true}) => {
 

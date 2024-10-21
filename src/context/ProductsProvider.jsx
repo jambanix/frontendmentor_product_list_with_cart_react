@@ -1,12 +1,10 @@
 import { createContext, useContext, useEffect, useState } from "react";
 
-
 const Products = createContext([]);
 
 export const ProductsProvider = ({children}) => {
 
     const [products, setProducts] = useState([]);
-    const [showModal, setShowModal] = useState([]);
 
     useEffect(() => {
         fetch("data.json")
@@ -22,6 +20,13 @@ export const ProductsProvider = ({children}) => {
             setProducts(newData);
         })}, []);
 
+    // Inserts product into array to keep the ordering
+    const insert = (product) => {
+        const index = products.indexOf(product);
+        const newProducts = products.filter(item => item.id !== product.id);
+        newProducts.splice(index, 0, product);
+        return newProducts;
+    }
 
     // Return array of products where quantity > 0
     const getCartItems = () => products.filter(item => item.quantity > 0);
@@ -37,6 +42,7 @@ export const ProductsProvider = ({children}) => {
         return products.filter(product => product.quantity > 0).reduce((total, product) => (product.price * product.quantity) + total, 0);
     }
 
+    // Reset cart
     const reset = () => {
         const cartItems = getCartItems();
         cartItems.forEach(item => removeFromCart(item.id));
@@ -46,13 +52,13 @@ export const ProductsProvider = ({children}) => {
     const alterQuantity = (id, value) => {
         const [product] = [...products.filter(item => item.id === id)];
         product.quantity += value;
-        setProducts((products) => [...products.filter(item => item.id !== id), product]);
+        setProducts((products) => insert(product));
     }
 
     const removeFromCart = (id) => {
         const [product] = [...products.filter(item => item.id === id)];
         product.quantity = 0;
-        setProducts((products) => [...products.filter(item => item.id !== id), product]);
+        setProducts((products) => insert(product));
     }
 
  
