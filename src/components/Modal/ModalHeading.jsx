@@ -2,7 +2,7 @@ export const ModalHeading = () => {
   return (
     <>
       <img
-        src="assets/images/icon-order-confirmed.svg"
+        src="/assets/images/icon-order-confirmed.svg"
         alt="confirm order icon"
         className="h-12 w-12"
       />
