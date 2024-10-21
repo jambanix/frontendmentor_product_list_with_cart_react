@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
+import { Product } from "./Product";
 
 const Products = createContext([]);
 
@@ -10,15 +11,9 @@ export const ProductsProvider = ({children}) => {
         fetch("data.json")
         .then(response => response.json())
         .then(data => {
-            const newData = data.map((item, ix) => {
-                return {
-                    ...item,
-                    quantity: 0,
-                    id: ix + 1
-                };
-            });
-            setProducts(newData);
-        })}, []);
+            const productsArray = data.map((product, ix) => new Product({...product, id: ix + 1}))
+            setProducts(productsArray);
+        })},[]);
 
     // Inserts product into array to keep the ordering
     const insert = (product) => {
@@ -42,6 +37,30 @@ export const ProductsProvider = ({children}) => {
         return products.filter(product => product.quantity > 0).reduce((total, product) => (product.price * product.quantity) + total, 0);
     }
 
+    const alterQuantity = (id, value) => {
+
+        let [product] = [...products.filter(item => item.id === id)];
+        switch (value) {
+            case 1:
+                product.increment();
+                break;
+            case -1:
+                product.decrement();
+                break;
+            case 0:
+                product.empty();
+                break;
+        }
+        product.setActiveStatus();
+        setProducts((products) => insert(product));
+    }
+
+    const increment = (id) => alterQuantity(id, 1);
+    const decrement = (id) => alterQuantity(id, -1);
+    const remove = (id) => alterQuantity(id, 0);
+
+    
+
     // Reset cart
     const reset = () => {
         const cartItems = getCartItems();
@@ -49,11 +68,7 @@ export const ProductsProvider = ({children}) => {
     }
     
 
-    const alterQuantity = (id, value) => {
-        const [product] = [...products.filter(item => item.id === id)];
-        product.quantity += value;
-        setProducts((products) => insert(product));
-    }
+    
 
     const removeFromCart = (id) => {
         const [product] = [...products.filter(item => item.id === id)];
@@ -65,8 +80,9 @@ export const ProductsProvider = ({children}) => {
     return (
         <Products.Provider value={
             {
+                increment,
+                decrement,
                 products,
-                alterQuantity,
                 getCartItems,
                 removeFromCart,
                 getItemSubtotal,
