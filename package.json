@@ -1,6 +1,6 @@
 {
   "name": "product-list-with-cart",
-  "private": true,
+  "private": false,
   "version": "1.0.0",
   "type": "module",
   "homepage": "https://jambanix.github.io/frontendmentor_product_list_with_cart_react/",
