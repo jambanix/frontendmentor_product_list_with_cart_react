@@ -47,5 +47,5 @@ Error generating stack: `+o.message+`
                 ${r.showModal?"visible bg-black/80":"invisible"}`,onClick:l,children:v.jsxs("div",{className:`
                     rounded-lg bg-white text-black
                     flex flex-col gap-6 transition-all
-                    p-8 w-full md:w-3/5 lg:w-1/2 h-fit md:h-fit
+                    p-8 w-full md:w-3/5 lg:w-1/2 h-fit md:h-fit max-w-[800px]
                     ${r.showModal?"scale-100 opacity-100":"scale-125 opacity-0"}`,onClick:i=>i.stopPropagation(),children:[v.jsx(ep,{}),v.jsx(np,{items:e(),total:t()}),v.jsx("button",{className:"rounded-full bg-red text-white h-12 hover:bg-red-dark",onClick:o,children:"Start New Order"})]})})};function lp(){return v.jsx(v.Fragment,{children:v.jsx("main",{children:v.jsx("div",{className:"relative flex justify-center",children:v.jsx(Dd,{children:v.jsxs(Jd,{children:[v.jsx(rp,{}),v.jsxs("div",{className:"grid grid-cols-1 gap-4 p-8 md:px-12 xl:grid-cols-[70%_auto] xl:gap-4 xl:p-16 max-w-[1600px]",children:[v.jsx(Kd,{}),v.jsx(bd,{})]})]})})})})})}rc(document.getElementById("root")).render(v.jsx(me.StrictMode,{children:v.jsx(lp,{})}));
