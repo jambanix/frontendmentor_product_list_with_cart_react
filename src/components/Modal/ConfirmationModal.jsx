@@ -27,7 +27,7 @@ export const ConfirmationModal = () => {
                 className={`
                     rounded-lg bg-white text-black
                     flex flex-col gap-6 transition-all
-                    p-8 w-full md:w-3/5 lg:w-1/2 h-fit md:h-fit
+                    p-8 w-full md:w-3/5 lg:w-1/2 h-fit md:h-fit max-w-[800px]
                     ${modalContext.showModal ? "scale-100 opacity-100" : "scale-125 opacity-0"}`}
                     
                 onClick={(e) => e.stopPropagation()}>
