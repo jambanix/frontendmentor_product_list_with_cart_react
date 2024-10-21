@@ -27,7 +27,7 @@ export const CartItem = ({
         {/* Remove icon */}
         <DeleteIcon remove={remove} id={id}/>
       </div>
-      <hr />
+      <hr className="opacity-10"/>
     </>
   );
 };

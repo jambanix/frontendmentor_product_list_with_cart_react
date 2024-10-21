@@ -11,11 +11,11 @@ export const ModalItem = ({ id, image, name, quantity, price, subtotal }) => {
           <h4>{name}</h4>
           <div className="flex flex-row gap-3">
             <p className="text-red">{quantity}x</p>
-            <p>@ £{price}</p>
+            <p>@ £{price.toFixed(2)}</p>
           </div>
         </div>
       </div>
-      <h4>£{subtotal}</h4>
+      <h4>£{subtotal.toFixed(2)}</h4>
     </div>
   );
 };
