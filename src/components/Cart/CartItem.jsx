@@ -1,4 +1,5 @@
 import { useProductsContext } from "../../context/ProductsProvider";
+import { DeleteIcon } from "../Icons/DeleteIcon";
 
 export const CartItem = ({
   id,
@@ -17,23 +18,14 @@ export const CartItem = ({
         <div className="flex flex-col">
           <h4>{name}</h4>
           <div className="flex gap-2">
-            <p className="text-red-500 text-semi-bold">{quantity}x</p>
-            <p className="font-thin">@£{price}</p>
-            <p className="">£{subtotal}</p>
+            <p className="text-red text-semi-bold">{quantity}x</p>
+            <p className="font-thin text-rose-400">@£{price.toFixed(2)}</p>
+            <p className="text-rose-500">£{subtotal.toFixed(2)}</p>
           </div>
         </div>
 
         {/* Remove icon */}
-          <div
-            className="flex items-center justify-middle rounded-full border-rose-300 border-2 p-1 cursor-pointer"
-            onClick={() => remove(id)}
-          >
-            <img
-              src="src/assets/images/icon-remove-item.svg"
-              alt=""
-              className=""
-            />
-          </div>
+        <DeleteIcon remove={remove} id={id}/>
       </div>
       <hr />
     </>

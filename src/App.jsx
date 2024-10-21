@@ -11,11 +11,11 @@ function App() {
   return (
     <>
       <main>
-        <div className="relative">
+        <div className="relative flex justify-center">
           <ProductsProvider>
             <ModalProvider>
             <ConfirmationModal />
-            <div className="grid grid-cols-1 gap-4 p-4 md:px-8 xl:grid-cols-[70%_auto] xl:gap-4 xl:p-16">
+            <div className="grid grid-cols-1 gap-4 p-8 md:px-12 xl:grid-cols-[70%_auto] xl:gap-4 xl:p-16 max-w-[1600px]">
               <Menu />
               <Cart />
             </div>

@@ -8,7 +8,7 @@ export const ModalHeading = () => {
       />
       <div>
         <h2 className="text-3xl font-bold">Order confirmed</h2>
-        <p>We hope you enjoy your food</p>
+        <p className="text-rose-400">We hope you enjoy your food!</p>
       </div>
     </>
   );

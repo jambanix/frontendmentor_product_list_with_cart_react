@@ -8,7 +8,7 @@ export const QuantityIcon = ({ onClick, increment = true }) => {
 
   return (
     <div
-      className="border-white rounded-full p-1 h-6 w-6 border-2 flex items-center justify-center hover:bg-white transition-colors"
+      className="border-white rounded-full p-1 h-5 w-5 border flex items-center justify-center hover:bg-white transition-colors"
       onClick={onClick} onMouseEnter={() => setIsHovering(true)} onMouseLeave={() => setIsHovering(false)}
     >
       {increment ? (
