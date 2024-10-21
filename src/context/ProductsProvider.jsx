@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { Product } from "./Product";
+import { Product } from "../objects/Product";
 
 const Products = createContext([]);
 
@@ -24,21 +24,21 @@ export const ProductsProvider = ({children}) => {
     }
 
     // Return array of products where quantity > 0
-    const getCartItems = () => products.filter(item => item.quantity > 0);
+    const cartItems = () => products.filter(item => item.quantity > 0);
 
     // Return the subtotal of an item based on ID
     const getItemSubtotal = (id) => {
         const [product] = [...products.filter(item => item.id === id)];
-        return product.quantity * product.price;
+        return product.subtotal;
     }
 
     // Return the total of all items in the cart
-    const getCartTotal = () => {
-        return products.filter(product => product.quantity > 0).reduce((total, product) => (product.price * product.quantity) + total, 0);
+    const cartTotal = () => {
+        return products.filter(product => product.quantity > 0).reduce((total, product) => product.subtotal + total, 0);
     }
 
-    const alterQuantity = (id, value) => {
 
+    const alterQuantity = (id, value) => {
         let [product] = [...products.filter(item => item.id === id)];
         switch (value) {
             case 1:
@@ -51,42 +51,32 @@ export const ProductsProvider = ({children}) => {
                 product.empty();
                 break;
         }
-        product.setActiveStatus();
+        product.update();
         setProducts((products) => insert(product));
     }
 
+    // Quantity amenders
     const increment = (id) => alterQuantity(id, 1);
     const decrement = (id) => alterQuantity(id, -1);
     const remove = (id) => alterQuantity(id, 0);
 
     
-
     // Reset cart
     const reset = () => {
-        const cartItems = getCartItems();
-        cartItems.forEach(item => removeFromCart(item.id));
-    }
-    
-
-    
-
-    const removeFromCart = (id) => {
-        const [product] = [...products.filter(item => item.id === id)];
-        product.quantity = 0;
-        setProducts((products) => insert(product));
+        const zero = products.map(product => alterQuantity(product.id, 0));
     }
 
  
     return (
         <Products.Provider value={
             {
+                products,
                 increment,
                 decrement,
-                products,
-                getCartItems,
-                removeFromCart,
+                remove,
+                cartItems,
                 getItemSubtotal,
-                getCartTotal,
+                cartTotal,
                 reset
             }}>
             {children}

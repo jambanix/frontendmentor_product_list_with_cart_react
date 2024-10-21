@@ -8,6 +8,7 @@ export class Product {
         this.id = id;
         this.quantity = 0;
         this.isActive = this.quantity > 0;
+        this.subtotal = this.quantity * this.price;
     }
 
     increment () {
@@ -20,15 +21,11 @@ export class Product {
 
     empty() {
         this.quantity = 0;
-        return this.quantity;
     }
 
-    subTotal() {
-        return (this.quantity * this.price);
-    }
-
-    setActiveStatus() {
+    update() {
         this.isActive = this.quantity > 0;
+        this.subtotal = this.quantity * this.price;
     }
     
 }

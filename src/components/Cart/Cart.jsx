@@ -5,10 +5,10 @@ import { CartSummary } from "./CartSummary";
 import { ConfirmButton } from "./ConfirmButton";
 
 export const Cart = () => {
-  const productsContext = useProductsContext();
-  const cartItems = productsContext.getCartItems();
+  let { cartItems, cartTotal } = useProductsContext();
+  cartItems = cartItems();
+  cartTotal = cartTotal();
   const cartEmpty = cartItems.length === 0;
-  const getCartTotal = () => productsContext.getCartTotal();
 
   return (
     <section className="bg-white flex flex-col rounded-xl gap-3 p-4 h-fit">
@@ -21,9 +21,9 @@ export const Cart = () => {
       {cartEmpty ? (
         <EmptyCart />
       ) : (
-        cartItems.map((item) => <CartItem product={item} />)
+        cartItems.map((item) => <CartItem {...item} />)
       )}
-      <CartSummary total={getCartTotal()} />
+      <CartSummary total={cartTotal} />
       <ConfirmButton>Confirm Order</ConfirmButton>
     </section>
   );

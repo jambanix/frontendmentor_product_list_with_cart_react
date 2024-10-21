@@ -6,8 +6,8 @@ import { useProductsContext } from "../../context/ProductsProvider";
 export const ConfirmButton = ({children}) => {
 
     const modalContext = useModalContext();
-    const productContext = useProductsContext();
-    const cartEmpty = productContext.getCartItems().length === 0;
+    const {cartItems} = useProductsContext();
+    const cartEmpty = cartItems().length === 0;
 
     const handleClick = () => {
         if (!cartEmpty) modalContext.toggleModal();

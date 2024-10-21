@@ -2,10 +2,6 @@
 
 export const QuantityIcon = ({onClick, increment=true}) => {
 
-
-    // TODO
-    // Fix icon so it's SVG and changes on hover state
-
     return (
         <div
         className="border-white rounded-full p-1 h-6 w-6 border-2 flex items-center justify-center hover:bg-white"

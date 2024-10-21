@@ -1,18 +1,18 @@
 import { useProductsContext } from "../../context/ProductsProvider";
-import { ModalItem } from "./Modaltem";
 import { useModalContext } from "../../context/ModalProvider";
+import { ModalHeading } from "./ModalHeading";
+import { ModalBody } from "./ModalBody";
 
 export const ConfirmationModal = () => {
 
-    const context = useProductsContext();
-    const cartItems = context.getCartItems();
-    const cartTotal = context.getCartTotal();
+    const {cartItems, cartTotal, reset} = useProductsContext();
+
     const modalContext = useModalContext();
     const hide = () => modalContext.toggleModal(false);
 
-    const startNew = () => {
+    const handleStartNew = () => {
         hide();
-        context.reset();
+        reset();
     }
 
     return (
@@ -31,23 +31,10 @@ export const ConfirmationModal = () => {
                     ${modalContext.showModal ? "scale-100 opacity-100" : "scale-125 opacity-0"}`}
                     
                 onClick={(e) => e.stopPropagation()}>
-                <img
-                    src="src/assets/images/icon-order-confirmed.svg"
-                    alt="confirm order icon"
-                    className="h-12 w-12" />
-                <div>
-                    <h2 className="text-3xl font-bold">Order confirmed</h2>
-                    <p>We hope you enjoy your food</p>
-                </div>
-                <div className="bg-rose-100 rounded-lg p-4">
-                    {cartItems.map(item => <ModalItem product={item}/>)}
-                    <div className="flex justify-between">
-                        <h4>Order Total</h4>
-                        <h2>£{cartTotal}</h2>
-                    </div>
-                </div>
+                <ModalHeading/>
+                <ModalBody items={cartItems()} total={cartTotal()}/>
                 <button
-                className="rounded-full bg-red text-white h-12" onClick={startNew}>
+                className="rounded-full bg-red text-white h-12" onClick={handleStartNew}>
                     Start New Order
                 </button>
             </div>
