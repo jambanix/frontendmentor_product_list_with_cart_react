@@ -5,6 +5,9 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}"
   ],
   theme: {
+    variants: {
+      fill: ["hover", "focus"]
+    },
     colors: {
       "rose": {
           50: "#fcf8f6",
@@ -15,10 +18,11 @@ export default {
           900: "#260f08"
         },
         "red": "#c73b0f",
+        "red-dark": "#7d2509",
         "green": "#1ea575",
         "black": "#000000",
         "white": "#ffffff"
-    },
+    }
   },
   plugins: [],
 }

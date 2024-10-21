@@ -1,10 +1,9 @@
 import { QuantityIcon } from "../Icons/QuantityIcon";
 
 export const QuantityButton = ({ children, isActive, onClick }) => {
-
-    const handleClick = () => {
-        if (isActive) onClick();
-    }
+  const handleClick = () => {
+    if (isActive) onClick();
+  };
 
   return (
     <button
