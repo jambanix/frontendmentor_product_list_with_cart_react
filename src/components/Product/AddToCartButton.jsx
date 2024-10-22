@@ -11,7 +11,7 @@ export const AddToCartButton = ({children, isActive, onClick}) => {
         ${isActive ? "invisible scale-0" : "visible scale-100"}`}
         onClick={onClick}
       >
-        <img src="./assets/images/icon-add-to-cart.svg" className="h-4 w-5" />
+        <img src="./assets/images/icon-add-to-cart.svg" className="h-4 w-5" alt="add to cart"/>
         <p>{children}</p>
       </button>
     )
