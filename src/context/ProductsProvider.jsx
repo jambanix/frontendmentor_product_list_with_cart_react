@@ -37,7 +37,7 @@ export const ProductsProvider = ({children}) => {
         return products.filter(product => product.quantity > 0).reduce((total, product) => product.subtotal + total, 0);
     }
 
-
+    // Parent function for the quantity amenders
     const alterQuantity = (id, value) => {
         let [product] = [...products.filter(item => item.id === id)];
         switch (value) {
@@ -62,9 +62,7 @@ export const ProductsProvider = ({children}) => {
 
     
     // Reset cart
-    const reset = () => {
-        const zero = products.map(product => alterQuantity(product.id, 0));
-    }
+    const reset = () => products.map(product => alterQuantity(product.id, 0));
 
  
     return (
