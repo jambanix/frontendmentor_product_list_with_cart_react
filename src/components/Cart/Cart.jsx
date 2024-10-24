@@ -32,7 +32,7 @@ export const Cart = () => {
       {/* Cart summary */}
       <div className="flex justify-between items-center">
         <p>Order Total</p>
-        <p className="text-3xl font-bold">£{total.toFixed(2)}</p>
+        <p className="text-3xl font-bold">£{cartTotal.toFixed(2)}</p>
       </div>
 
       {/* Carbon neutral banner */}
