@@ -1,8 +1,6 @@
 import { useModalContext } from "../../context/ModalProvider"
 import { useProductsContext } from "../../context/ProductsProvider";
 
-
-
 export const ConfirmButton = ({children}) => {
 
     const modalContext = useModalContext();
