@@ -1,21 +1,24 @@
-import { useModalContext } from "../../context/ModalProvider"
 import { useProductsContext } from "../../context/ProductsProvider";
+import { useRef } from "react"
+import { ConfirmationModal } from "../Modal/ConfirmationModal";
 
 export const ConfirmButton = ({children}) => {
 
-    const modalContext = useModalContext();
     const {cartItems} = useProductsContext();
-    const cartEmpty = cartItems().length === 0;
+    const cartEmpty = cartItems.length === 0;
 
-    const handleClick = () => {
-        if (!cartEmpty) modalContext.toggleModal();
-    }
+    const modal = useRef();
 
+    const handleClick = () => !cartEmpty && modal.current.show();
+    
     return (
-        <button
-            className="w-full bg-red text-white p-4 rounded-lg hover:bg-red-dark"
-            onClick={handleClick}>
-                {children}
-        </button>
+        <>
+					<ConfirmationModal ref={modal}/>
+					<button
+							className="w-full bg-red text-white p-4 rounded-lg hover:bg-red-dark"
+							onClick={handleClick}>
+									{children}
+					</button>
+        </>
     )
 }

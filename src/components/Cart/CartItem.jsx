@@ -13,7 +13,9 @@ export const CartItem = ({
   return (
     <>
       {/* Cart item row */}
+
       <div className="flex justify-between p-2 items-center">
+        
         {/* Item details */}
         <div className="flex flex-col">
           <h4>{name}</h4>

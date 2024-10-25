@@ -24,7 +24,7 @@ export const ProductsProvider = ({children}) => {
     }
 
     // Return array of products where quantity > 0
-    const cartItems = () => products.filter(item => item.quantity > 0);
+    const cartItems = products.filter(item => item.quantity > 0);
 
     // Return the subtotal of an item based on ID
     const getItemSubtotal = (id) => {
@@ -33,9 +33,8 @@ export const ProductsProvider = ({children}) => {
     }
 
     // Return the total of all items in the cart
-    const cartTotal = () => {
-        return products.filter(product => product.quantity > 0).reduce((total, product) => product.subtotal + total, 0);
-    }
+    const cartTotal = products.filter(product => product.quantity > 0).reduce((total, product) => product.subtotal + total, 0);
+    
 
     // Parent function for the quantity amenders
     const alterQuantity = (id, value) => {

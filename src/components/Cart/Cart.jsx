@@ -3,9 +3,8 @@ import { CartItem } from "./CartItem";
 import { ConfirmButton } from "./ConfirmButton";
 
 export const Cart = () => {
-  let { cartItems, cartTotal } = useProductsContext();
-  cartItems = cartItems();
-  cartTotal = cartTotal();
+  const { cartItems, cartTotal } = useProductsContext();
+
   const cartEmpty = cartItems.length === 0;
 
   return (
