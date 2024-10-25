@@ -5,7 +5,7 @@ export const ModalBody = ({items, total}) => {
     <div className="bg-rose-100 rounded-lg px-4 pt-2 pb-4">
       {items.map((item) => (
         <>
-        <ModalItem {...item} />
+        <ModalItem key={item.id} {...item} />
         <hr className="opacity-10"/>
         </>
       ))}

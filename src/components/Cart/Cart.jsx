@@ -25,7 +25,7 @@ export const Cart = () => {
           <p>Your added items will appear here</p>
         </div>
       ) : (
-        cartItems.map((item) => <CartItem {...item} />)
+        cartItems.map((item) => <CartItem key={item.id} {...item} />)
       )}
 
       {/* Cart summary */}
